@@ -1,4 +1,4 @@
-# Analyzing the impact of Montreal’s Réseau Express Vélo (REV) on Surrounding Bike Lanes’ Ridership and the COVID-19 Cycling Recovery
+### Analyzing the impact of Montreal’s Réseau Express Vélo (REV) on Surrounding Bike Lanes’ Ridership and the COVID-19 Cycling Recovery
 
 # Description
 This project contains the code used in the following article: 

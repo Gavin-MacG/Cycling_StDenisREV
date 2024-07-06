@@ -2,7 +2,7 @@
 
 # Description
 This project contains the code used in the following article: 
-[Analyzing the impact of Montreal’s Réseau Express Vélo (REV) on Surrounding Bike Lanes’ Ridership and the COVID-19 Cycling Recovery](https://findingspress.org/article/118813-revisiting-covid-19-s-impact-on-cycling-an-examination-of-bicycle-count-data-in-montreal)
+[Analyzing the impact of Montreal’s Réseau Express Vélo (REV) on Surrounding Bike Lanes’ Ridership and the COVID-19 Cycling Recovery]()
 
 ## Instructions
 

@@ -1,0 +1,3 @@
+install.packages("usethis")
+install.packages("rlang")
+usethis::use_git_ignore(".Rproj.user")

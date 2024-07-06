@@ -10,10 +10,10 @@ Open the Rproj file, then access the individual scripts from the file menu <br/>
 
 ## Folder structure 
 
-DataRaw : Contains the raw bike count data obtained fro the [City of Montreal](https://donnees.montreal.ca/en/dataset/velos-comptage) <br/>
-DataTreated : Contains all the processed data that was created with the scripts <br/>
-Outputs : Contians all the tables and figures created with the scripts <br/>
-Scripts : Contains the individual R scripts <br/>
+**DataRaw** : Contains the raw bike count data obtained fro the [City of Montreal](https://donnees.montreal.ca/en/dataset/velos-comptage) <br/>
+**DataTreated** : Contains all the processed data that was created with the scripts <br/>
+**Outputs** : Contians all the tables and figures created with the scripts <br/>
+**Scripts** : Contains the individual R scripts <br/>
 
 ## Packages : 
 "tidyverse" <br/>

@@ -178,6 +178,10 @@ ClusterAnalysisTable <- bind_rows(ClusterA_year, ClusterB_year, ClusterC_year, C
   pivot_wider(names_from = Year, values_from = c(Total, Displaced, PentUp)) %>% 
   select(Name, Displaced_2021, PentUp_2021, Total_2021, Displaced_2022, PentUp_2022, Total_2022,Displaced_2023, PentUp_2023, Total_2023)
 
+# Note, Cluster C is missing an observation in dec 2023
+ClusterAnalysisTable$Displaced_2023[3] <- ClusterAnalysisTable$Displaced_2023[3] -4613
+
+
   
 write.xlsx(ClusterAnalysisTable, file = "Outputs/Tables/Table4_ClusterAnalysis(Year).xlsx", sheetName = "Sheet1")
   

@@ -164,7 +164,7 @@ Table1_Ridership <- Yearly_Stats_Pivot %>%
 write.xlsx(Table1_Ridership, file = "Outputs/Tables/Table1_Ridership (Year).xlsx", sheetName = "Sheet1")
 
 # Percent change due to COVID per sensor
-Table2_CovidDrop <- Yearly_Stats_Pivot %>% 
+CovidDrop <- Yearly_Stats_Pivot %>% 
   select(Name, Group, PreCov, Covid2020, Covid2021, Covid2022,Covid2023) %>% 
   mutate(`2020`= Covid2020,
          `2021`= Covid2021,
@@ -172,6 +172,9 @@ Table2_CovidDrop <- Yearly_Stats_Pivot %>%
          `2023`= Covid2023) %>% 
  select(Name, Group,PreCov,`2020`, `2021`,`2022`, `2023`) %>% 
  filter(Group != "REV")
+
+# Set Maisonneuve_Peel<s 2023 data to NA
+CovidDrop$`2023`[CovidDrop$Name == "Maisonneuve_Peel"] <- NA
 
 ###############################################################
 # Weighted average drops by group ------------------------------------------------------------
@@ -204,7 +207,7 @@ Yearly_W_Change <- full_join(Yearly_W_Change, Yearly_W_Change_2023)%>%
   ungroup()
 
 # combine individual and group statistics of ridership change due to COVID
-Table2_CovidDrop <- bind_rows(Table2_CovidDrop,Yearly_W_Change) %>% 
+Table2_CovidDrop <- bind_rows(CovidDrop,Yearly_W_Change) %>% 
   arrange(Group)
   
 
@@ -221,6 +224,39 @@ Pearsontest <-Yearly_W_Change %>%
   as.data.frame()  
 
 cor.test(Pearsontest$Control, Pearsontest$Parallel, method = 'pearson')
+
+#####################################################################
+# Boxplot to measure difference of changes between groups
+######################################################################
+
+Comparetest <- CovidDrop %>%
+  select(-PreCov) %>% 
+  pivot_longer(cols = `2020`:`2023`, names_to = "Year", values_to = "Drop")
+
+head(Comparetest)
+
+# Boxplot
+ggplot(Comparetest, aes(x = Year, y = Drop, color = Group, fill = Group)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(
+    title = "Boxplot of Drop by Year and Group",
+    x = "Year",
+    y = "Change in ridership",
+    color = "Group",
+    fill = "Group"
+  ) +
+  scale_color_manual(values = c("Control" = "#009E73", "Parallel" = "#E69F00")) +
+  scale_fill_manual(values = c("Control" = "#009E73", "Parallel" = "#E69F00")) +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12)
+  )
+
+# execute Repeated Measures ANOVA
+anova_result <- aov(Drop ~ Group * Year + Error(Name/Year), data = Comparetest)
+summary(anova_result)
 
 #####################################################################
 # Calculate drops and lost per parallel sensor

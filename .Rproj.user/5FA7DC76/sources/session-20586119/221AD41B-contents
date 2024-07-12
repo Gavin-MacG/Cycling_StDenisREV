@@ -209,7 +209,7 @@ plot_results <- function(df) {
     scale_color_manual(values=c("ll" = "black", "Drop" = "red3"),  
                        labels=c("ll" = "Parallel", "Drop" = "Drop")) +  
     scale_fill_manual(values=c("Displaced" = "gold1", "PentUp" = "springgreen3"),  
-                      labels=c("Displaced" = "Displaced", "PentUp" = "PentUp")) +  
+                      labels=c("Displaced" = "Displaced", "PentUp" = "Pent-up")) +  
     ggtitle(dataframe_name) +
     scale_x_date(date_breaks = "1 year", date_labels = "%Y")
   return(ggplot_object)
@@ -252,7 +252,7 @@ plot_area <- function(df) {
           plot.title = element_text(size = 10)) + 
     scale_y_continuous(labels = scales::label_comma(), limits=c(0, 250000), breaks=seq(0, 250000, by=100000)) +
     scale_fill_manual(values=c("Displaced" = "gold1", "PentUp" = "springgreen3"),
-                      labels=c("Displaced", "PentUp")) +  
+                      labels=c("Displaced" = "Displaced", "PentUp" = "Pent-up")) +  
     scale_color_manual(values=c("REV" = "black"),  
                        labels=c("REV")) +
     scale_x_date(limits = as.Date(c("2020-06-01", NA)), date_breaks = "1 year", date_labels = "%Y") + # Show only years on x-axis
